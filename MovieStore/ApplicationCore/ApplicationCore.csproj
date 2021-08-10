@@ -7,9 +7,7 @@
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="Entities\" />
-    <Folder Include="Models\" />
     <Folder Include="RepositoryInterfaces\" />
-    <Folder Include="ServiceInterfaces\" />
   </ItemGroup>
 
 </Project>
