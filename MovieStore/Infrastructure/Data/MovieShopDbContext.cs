@@ -21,15 +21,19 @@ namespace Infrastructure.Data
 
         public DbSet<Trailer> Trailers { get; set; }
 
+        public DbSet<Cast> Casts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Movie>().HasMany(m => m.Genres).WithMany(g => g.Movies)
+                .UsingEntity<Dictionary<string, object>>("MovieGenre",
+            m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
+            g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
+
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
-            //modelBuilder.Entity<Movie>().HasMany(m => m.Genres).WithMany(g => g.Movies)
-            //    .UsingEntity<Dictionary<string, object>>("MovieGenre",
-            //m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
-            //g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
-
+            modelBuilder.Entity<Cast>(ConfigureCast);
+            modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
@@ -52,17 +56,28 @@ namespace Infrastructure.Data
             builder.Ignore(m => m.Rating);
         }
 
-        private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
-        {
-            
-        }
-
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)
         {
             builder.ToTable("Trailer");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.TrailerUrl).HasMaxLength(2048);
             builder.Property(t => t.Name).HasMaxLength(2048);
+        }
+
+        private void ConfigureCast(EntityTypeBuilder<Cast> builder)
+        {
+            builder.ToTable("Cast");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Name).HasMaxLength(2048);
+            builder.Property(c => c.ProfilePath).HasMaxLength(2048);
+        }
+
+        private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
+        {
+            builder.ToTable("MovieCast");
+            builder.HasKey(mc=> new { mc.CastId,mc.MovieId,mc.Character });
+            builder.HasOne(mc => mc.Movie).WithMany(mc => mc.MovieCasts).HasForeignKey(mc => mc.MovieId);
+            builder.HasOne(mc => mc.Cast).WithMany(mc => mc.CastsInMovie).HasForeignKey(mc => mc.CastId);
         }
     }
 }

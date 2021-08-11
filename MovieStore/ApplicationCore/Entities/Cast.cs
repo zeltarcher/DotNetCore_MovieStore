@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Entities
 {
-    public class Trailer
+    public class Cast
     {
         public int Id { get; set; }
-        public string TrailerUrl { get; set; }
         public string Name { get; set; }
+        public string Gender { get; set; }
+        public string TmdbUrl { get; set; }
+        public string ProfilePath { get; set; }
 
-        //FK
-        public int MovieId { get; set; }        
-        public ICollection<Movie> Movie { get; set; }//navigation prop
+        public ICollection<MovieCast> CastsInMovie { get; set; }
     }
 }

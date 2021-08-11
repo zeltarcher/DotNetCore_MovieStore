@@ -4,14 +4,16 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MovieShopDbContext))]
-    partial class MovieShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210811222613_CreatingCastTable")]
+    partial class CreatingCastTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,24 +142,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Movie");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.MovieCast", b =>
-                {
-                    b.Property<int>("CastId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Character")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CastId", "MovieId", "Character");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("MovieCast");
-                });
-
             modelBuilder.Entity("ApplicationCore.Entities.Trailer", b =>
                 {
                     b.Property<int>("Id")
@@ -211,25 +195,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("MovieTrailer");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.MovieCast", b =>
-                {
-                    b.HasOne("ApplicationCore.Entities.Cast", "Cast")
-                        .WithMany("CastsInMovie")
-                        .HasForeignKey("CastId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApplicationCore.Entities.Movie", "Movie")
-                        .WithMany("MovieCasts")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cast");
-
-                    b.Navigation("Movie");
-                });
-
             modelBuilder.Entity("MovieGenre", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Genre", null)
@@ -258,16 +223,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("TrailersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.Cast", b =>
-                {
-                    b.Navigation("CastsInMovie");
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.Movie", b =>
-                {
-                    b.Navigation("MovieCasts");
                 });
 #pragma warning restore 612, 618
         }
