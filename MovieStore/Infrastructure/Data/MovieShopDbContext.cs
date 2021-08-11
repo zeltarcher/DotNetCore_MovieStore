@@ -34,6 +34,8 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
             modelBuilder.Entity<Cast>(ConfigureCast);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<Crew>(ConfigureCrew);
+            modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
@@ -60,16 +62,16 @@ namespace Infrastructure.Data
         {
             builder.ToTable("Trailer");
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.TrailerUrl).HasMaxLength(2048);
-            builder.Property(t => t.Name).HasMaxLength(2048);
+            builder.Property(t => t.TrailerUrl).HasMaxLength(2084);
+            builder.Property(t => t.Name).HasMaxLength(2084);
         }
 
         private void ConfigureCast(EntityTypeBuilder<Cast> builder)
         {
             builder.ToTable("Cast");
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Name).HasMaxLength(2048);
-            builder.Property(c => c.ProfilePath).HasMaxLength(2048);
+            builder.Property(c => c.Name).HasMaxLength(2084);
+            builder.Property(c => c.ProfilePath).HasMaxLength(2084);
         }
 
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
@@ -78,6 +80,22 @@ namespace Infrastructure.Data
             builder.HasKey(mc=> new { mc.CastId,mc.MovieId,mc.Character });
             builder.HasOne(mc => mc.Movie).WithMany(mc => mc.MovieCasts).HasForeignKey(mc => mc.MovieId);
             builder.HasOne(mc => mc.Cast).WithMany(mc => mc.CastsInMovie).HasForeignKey(mc => mc.CastId);
+        }
+
+        private void ConfigureCrew(EntityTypeBuilder<Crew> builder)
+        {
+            builder.ToTable("Crew");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Name).HasMaxLength(128);
+            builder.Property(c => c.ProfilePath).HasMaxLength(2084);
+        }
+
+        private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> builder)
+        {
+            builder.ToTable("MovieCrew");
+            builder.HasKey(mc => new { mc.MovieId, mc.CrewId, mc.Department, mc.Job });
+            builder.HasOne(mc => mc.Movie).WithMany(mc => mc.MovieCrews).HasForeignKey(mc => mc.MovieId);
+            builder.HasOne(mc => mc.Crew).WithMany(mc => mc.MovieCrews).HasForeignKey(mc => mc.CrewId);
         }
     }
 }
