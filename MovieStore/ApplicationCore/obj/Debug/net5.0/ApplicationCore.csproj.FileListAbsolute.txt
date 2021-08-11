@@ -1,0 +1,12 @@
+E:\DotNetCore\MovieStore\ApplicationCore\bin\Debug\net5.0\ApplicationCore.deps.json
+E:\DotNetCore\MovieStore\ApplicationCore\bin\Debug\net5.0\ApplicationCore.dll
+E:\DotNetCore\MovieStore\ApplicationCore\bin\Debug\net5.0\ref\ApplicationCore.dll
+E:\DotNetCore\MovieStore\ApplicationCore\bin\Debug\net5.0\ApplicationCore.pdb
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.csproj.AssemblyReference.cache
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.AssemblyInfoInputs.cache
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.AssemblyInfo.cs
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.csproj.CoreCompileInputs.cache
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.dll
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ref\ApplicationCore.dll
+E:\DotNetCore\MovieStore\ApplicationCore\obj\Debug\net5.0\ApplicationCore.pdb
