@@ -37,6 +37,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Crew>(ConfigureCrew);
             modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
             modelBuilder.Entity<User>(ConfigureUser);
+            modelBuilder.Entity<Review>(ConfigureReview);
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
@@ -109,6 +110,16 @@ namespace Infrastructure.Data
             builder.Property(u => u.HashedPassword).HasMaxLength(1024);
             builder.Property(u => u.Salt).HasMaxLength(1024);
             builder.Property(u => u.PhoneNumber).HasMaxLength(16);
+        }
+
+        private void ConfigureReview(EntityTypeBuilder<Review> builder)
+        {
+            builder.ToTable("Review");
+            builder.HasKey(r => new {r.MovieId,r.UserId });
+            builder.HasOne(r => r.Movie).WithMany(r => r.Reviews).HasForeignKey(r => r.MovieId);
+            builder.HasOne(r => r.User).WithMany(r => r.Reviews).HasForeignKey(r => r.UserId);
+            builder.Property(r => r.Rating).HasColumnType("decimal(3,2)").HasDefaultValue(9.9m);
+            
         }
     }
 }
