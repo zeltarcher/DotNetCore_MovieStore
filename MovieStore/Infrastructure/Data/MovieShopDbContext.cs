@@ -30,6 +30,12 @@ namespace Infrastructure.Data
             m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
             g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
 
+            modelBuilder.Entity<User>().HasMany(u => u.Roles).WithMany(r => r.Users)
+                .UsingEntity<Dictionary<string, object>>("UserRole",
+                r=>r.HasOne<Role>().WithMany().HasForeignKey("RoleId"),
+                u => u.HasOne<User>().WithMany().HasForeignKey("UserId"));
+
+
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
             modelBuilder.Entity<Cast>(ConfigureCast);
@@ -40,6 +46,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Review>(ConfigureReview);
             modelBuilder.Entity<Favorite>(ConfigureFavorite);
             modelBuilder.Entity<Purchase>(ConfigurePurchase);
+            modelBuilder.Entity<Role>(ConfigureRole);
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
@@ -62,6 +69,13 @@ namespace Infrastructure.Data
             builder.Property(m => m.ReleaseDate).HasColumnType("datetime2(7)");
             builder.Property(m => m.UpdatedDate).HasColumnType("datetime2(7)");
             builder.Ignore(m => m.Rating);
+        }
+
+        private void ConfigureGenre(EntityTypeBuilder<Genre> builder)
+        {
+            builder.ToTable("Genre");
+            builder.HasKey(g => g.Id);
+            builder.Property(g => g.Name).IsRequired().HasMaxLength(64);
         }
 
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)
@@ -146,6 +160,14 @@ namespace Infrastructure.Data
             builder.HasOne(p => p.User).WithMany(p => p.Purchases).HasForeignKey(p => p.UserId);
             builder.Property(p => p.TotalPrice).HasColumnType("decimal(18,2)").HasDefaultValue(9.9m);
             builder.Property(p => p.PurchaseDateTime).HasColumnType("datetime2(7)");
+
+        }
+
+        private void ConfigureRole(EntityTypeBuilder<Role> builder)
+        {
+            builder.ToTable("Role");
+            builder.HasKey(r => r.Id);
+            builder.Property(r => r.Name).HasMaxLength(20);
 
         }
     }
