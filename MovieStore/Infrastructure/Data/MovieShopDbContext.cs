@@ -38,6 +38,8 @@ namespace Infrastructure.Data
             modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
             modelBuilder.Entity<User>(ConfigureUser);
             modelBuilder.Entity<Review>(ConfigureReview);
+            modelBuilder.Entity<Favorite>(ConfigureFavorite);
+            modelBuilder.Entity<Purchase>(ConfigurePurchase);
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
@@ -45,7 +47,7 @@ namespace Infrastructure.Data
             //User fluent API rules
             builder.ToTable("Movie");
             builder.HasKey(m => m.Id);
-            builder.Property(m => m.Title).HasMaxLength(256);
+            builder.Property(m => m.Title).IsRequired().HasMaxLength(256);
             builder.Property(m => m.Overview).HasMaxLength(4096);
             builder.Property(m => m.Tagline).HasMaxLength(512);
             builder.Property(m => m.ImdbUrl).HasMaxLength(2084);
@@ -56,7 +58,9 @@ namespace Infrastructure.Data
             builder.Property(m => m.Price).HasColumnType("decimal(5, 2)").HasDefaultValue(9.9m);
             builder.Property(m => m.Budget).HasColumnType("decimal(18, 4)").HasDefaultValue(9.9m);
             builder.Property(m => m.Revenue).HasColumnType("decimal(18, 4)").HasDefaultValue(9.9m);
-            builder.Property(m => m.CreatedDate).HasDefaultValueSql("getdate()");
+            builder.Property(m => m.CreatedDate).HasColumnType("datetime2(7)").HasDefaultValueSql("getdate()");
+            builder.Property(m => m.ReleaseDate).HasColumnType("datetime2(7)");
+            builder.Property(m => m.UpdatedDate).HasColumnType("datetime2(7)");
             builder.Ignore(m => m.Rating);
         }
 
@@ -66,6 +70,7 @@ namespace Infrastructure.Data
             builder.HasKey(t => t.Id);
             builder.Property(t => t.TrailerUrl).HasMaxLength(2084);
             builder.Property(t => t.Name).HasMaxLength(2084);
+            builder.HasOne(t => t.Movie).WithMany(t => t.Trailers).HasForeignKey(t => t.MovieId);
         }
 
         private void ConfigureCast(EntityTypeBuilder<Cast> builder)
@@ -106,10 +111,13 @@ namespace Infrastructure.Data
             builder.HasKey(u => u.Id);
             builder.Property(u => u.FirstName).HasMaxLength(128);
             builder.Property(u => u.LastName).HasMaxLength(128);
+            builder.Property(u => u.DateOfBirth).HasColumnType("datetime2(7)");
             builder.Property(u => u.Email).HasMaxLength(256);
             builder.Property(u => u.HashedPassword).HasMaxLength(1024);
             builder.Property(u => u.Salt).HasMaxLength(1024);
             builder.Property(u => u.PhoneNumber).HasMaxLength(16);
+            builder.Property(u => u.LastLoginDateTime).HasColumnType("datetime2(7)");
+            builder.Property(u => u.LockoutEndDate).HasColumnType("datetime2(7)");
         }
 
         private void ConfigureReview(EntityTypeBuilder<Review> builder)
@@ -120,6 +128,25 @@ namespace Infrastructure.Data
             builder.HasOne(r => r.User).WithMany(r => r.Reviews).HasForeignKey(r => r.UserId);
             builder.Property(r => r.Rating).HasColumnType("decimal(3,2)").HasDefaultValue(9.9m);
             
+        }
+
+        private void ConfigureFavorite(EntityTypeBuilder<Favorite> builder)
+        {
+            builder.ToTable("Favorite");
+            builder.HasKey(f => f.Id);
+            builder.HasOne(f => f.Movie).WithMany(f => f.Favorites).HasForeignKey(f => f.MovieId);
+            builder.HasOne(f => f.User).WithMany(f => f.Favorites).HasForeignKey(f => f.UserId);
+        }
+
+        private void ConfigurePurchase(EntityTypeBuilder<Purchase> builder)
+        {
+            builder.ToTable("Purchase");
+            builder.HasKey(p => p.Id);
+            builder.HasOne(p => p.Movie).WithMany(p => p.Purchases).HasForeignKey(p => p.MovieId);
+            builder.HasOne(p => p.User).WithMany(p => p.Purchases).HasForeignKey(p => p.UserId);
+            builder.Property(p => p.TotalPrice).HasColumnType("decimal(18,2)").HasDefaultValue(9.9m);
+            builder.Property(p => p.PurchaseDateTime).HasColumnType("datetime2(7)");
+
         }
     }
 }

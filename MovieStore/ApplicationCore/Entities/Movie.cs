@@ -70,5 +70,7 @@ namespace ApplicationCore.Entities
         public ICollection<MovieCrew> MovieCrews { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
+        public ICollection<Purchase> Purchases { get; set; }
     }
 }

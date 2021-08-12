@@ -14,6 +14,6 @@ namespace ApplicationCore.Entities
 
         //FK
         public int MovieId { get; set; }        
-        public ICollection<Movie> Movie { get; set; }//navigation prop
+        public Movie Movie { get; set; }//navigation prop
     }
 }

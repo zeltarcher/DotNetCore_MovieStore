@@ -23,5 +23,8 @@ namespace ApplicationCore.Entities
         public int AccessFailedCount { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
+        public ICollection<Purchase> Purchases { get; set; }
+
     }
 }
