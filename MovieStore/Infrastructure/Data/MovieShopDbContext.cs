@@ -37,6 +37,7 @@ namespace Infrastructure.Data
 
 
             modelBuilder.Entity<Movie>(ConfigureMovie);
+            modelBuilder.Entity<Genre>(ConfigureGenre);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
             modelBuilder.Entity<Cast>(ConfigureCast);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
