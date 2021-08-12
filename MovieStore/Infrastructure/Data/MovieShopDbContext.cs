@@ -36,6 +36,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
             modelBuilder.Entity<Crew>(ConfigureCrew);
             modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
+            modelBuilder.Entity<User>(ConfigureUser);
         }
 
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
@@ -96,6 +97,18 @@ namespace Infrastructure.Data
             builder.HasKey(mc => new { mc.MovieId, mc.CrewId, mc.Department, mc.Job });
             builder.HasOne(mc => mc.Movie).WithMany(mc => mc.MovieCrews).HasForeignKey(mc => mc.MovieId);
             builder.HasOne(mc => mc.Crew).WithMany(mc => mc.MovieCrews).HasForeignKey(mc => mc.CrewId);
+        }
+
+        private void ConfigureUser(EntityTypeBuilder<User> builder)
+        {
+            builder.ToTable("User");
+            builder.HasKey(u => u.Id);
+            builder.Property(u => u.FirstName).HasMaxLength(128);
+            builder.Property(u => u.LastName).HasMaxLength(128);
+            builder.Property(u => u.Email).HasMaxLength(256);
+            builder.Property(u => u.HashedPassword).HasMaxLength(1024);
+            builder.Property(u => u.Salt).HasMaxLength(1024);
+            builder.Property(u => u.PhoneNumber).HasMaxLength(16);
         }
     }
 }
