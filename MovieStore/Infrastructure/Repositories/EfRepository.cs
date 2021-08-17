@@ -31,29 +31,27 @@ namespace Infrastructure.Repositories
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
-            var entity = await _dbContext.Set<T>().FindAsync(id);
-            return entity;
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
-        public Task<int> GetCountAsync(Expression<Func<T, bool>> filter = null)
+        public virtual async Task<int> GetCountAsync(Expression<Func<T, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().Where(filter).CountAsync();
         }
 
-        public Task<bool> GetExistAsync(Expression<Func<T, bool>> filter = null)
+        public virtual async Task<bool> GetExistAsync(Expression<Func<T, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().Where(filter).AnyAsync();
         }
 
         public virtual async Task<IEnumerable<T>> ListAllAsync()
         {
-            var data = await _dbContext.Set<T>().ToListAsync();
-            return data;
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> filter)
+        public virtual async Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().Where(filter).ToListAsync();
         }
 
         public Task<T> UpdateAsync(T entity)
