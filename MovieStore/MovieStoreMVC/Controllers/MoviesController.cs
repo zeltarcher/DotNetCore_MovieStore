@@ -8,9 +8,11 @@ namespace MovieStoreMVC.Controllers
 {
     public class MoviesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Details(int id)
         {
             return View();
         }
+
+
     }
 }
