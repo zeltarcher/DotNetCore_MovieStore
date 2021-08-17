@@ -23,5 +23,17 @@ namespace MovieStoreMVC.Controllers
             var movieCards = await _movieService.GetTopRevenueMovies();
             return View(movieCards);
         }
+
+        public IActionResult Privacy()
+        {
+            // get top revenue movie and display on the view
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
