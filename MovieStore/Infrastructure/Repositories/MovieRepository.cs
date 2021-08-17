@@ -23,8 +23,7 @@ namespace Infrastructure.Repositories
             //ToList/Count/loop
             // I/O bound operation
             //EF has methods that have both async and non-async
-            var movies = await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
-            return movies;
+            return await _dbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
         }
     }
 }
