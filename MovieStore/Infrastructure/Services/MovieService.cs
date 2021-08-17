@@ -22,6 +22,11 @@ namespace Infrastructure.Services
 
             var movieCards = new List<MovieCardResponseModel>();
 
+            foreach (var movie in movies)
+            {
+                movieCards.Add(new MovieCardResponseModel { Id = movie.Id, Title = movie.Title, PostedUrl = movie.PosterUrl });
+            }
+
             return movieCards;
         }
     }

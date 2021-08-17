@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace ApplicationCore.Models
 {
     public class MovieCardResponseModel
-    {
+    {        
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string PostedUrl { get; set; }
+        public decimal Budget { get; set; }
     }
 }
