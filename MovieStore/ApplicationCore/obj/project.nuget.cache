@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "TLGuwEw5T9KSabyH+dtotZvBeHun8oE3HcnyuXuwVXclkLoUlu+MFf33fh9bGi97aRxLOjkez9WGoGeiBLIX3Q==",
+  "dgSpecHash": "hKRTNALb0irlCKms/5+hA5YJT4yxQEW3tvPt/CRHzFBsjNIro7k6kEvePVJW5cIXwVVdK+ptMF1/j8ZbmIM1Tw==",
   "success": true,
   "projectFilePath": "E:\\DotNetCore\\MovieStore\\ApplicationCore\\ApplicationCore.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\truon\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

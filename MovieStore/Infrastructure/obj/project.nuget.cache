@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uygNvYk+1XCDdMx9zJ4WLeE1ctZT2Pz4s2mo9pQm5uPP2zpuW9582NBqsPbcEaBcMbaW6kIk7QW4u7qbfBNO2Q==",
+  "dgSpecHash": "33C8xmezi/011wHTPmgA7zmEpLo25DM+3eXz/wzPam1Z3oEPEAfM+sryR+X1cOZJLQuw0mhbKmabYFYmbZA5Wg==",
   "success": true,
   "projectFilePath": "E:\\DotNetCore\\MovieStore\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -97,7 +97,8 @@
     "C:\\Users\\truon\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\truon\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\truon\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\truon\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\truon\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\truon\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
