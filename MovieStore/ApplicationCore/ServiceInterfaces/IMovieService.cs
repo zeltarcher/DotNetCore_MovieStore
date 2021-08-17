@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApplicationCore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.ServiceInterfaces
 {
-    class IMovieService
+    public interface IMovieService
     {
+        Task<List<MovieCardResponseModel>> GetTopRevenueMovies();
+
+        //Task<MovieDetailsResponseModel> GetMovieDetails(int id);
     }
 }
