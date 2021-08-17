@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationCore.ServiceInterfaces;
+using Infrastructure.Services;
 
 namespace MovieStoreMVC
 {
@@ -27,6 +29,7 @@ namespace MovieStoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IMovieService, Infrastructure.Ser>();
 
             services.AddDbContext<MovieShopDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"))

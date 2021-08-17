@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Models
 {
-    class MovieCardResponseModel
+    public class MovieCardResponseModel
     {
     }
 }
