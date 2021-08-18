@@ -28,6 +28,8 @@ namespace MovieStoreMVC.Controllers
         [HttpPost]
         public IActionResult Register(LoginRequestModel model)
         {
+            //call the service and repository to hash the pass with salt and save to db
+
             return View();
         }
     }
