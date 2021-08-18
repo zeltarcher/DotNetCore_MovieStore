@@ -23,6 +23,7 @@ namespace Infrastructure.Data
 
         public DbSet<Cast> Casts { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

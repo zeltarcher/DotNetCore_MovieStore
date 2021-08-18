@@ -16,6 +16,12 @@ namespace Infrastructure.Services
         {
             _movieRepository = movieRepository;
         }
+
+        public Task<MovieDetails> GetMovieDetails(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
         {
             var movies = await _movieRepository.Get30HighestRevenueMovie();
@@ -29,5 +35,7 @@ namespace Infrastructure.Services
 
             return movieCards;
         }
+
+
     }
 }
