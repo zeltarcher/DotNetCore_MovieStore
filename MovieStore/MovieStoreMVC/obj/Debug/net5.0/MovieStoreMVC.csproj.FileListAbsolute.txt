@@ -153,3 +153,4 @@ E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\Razor\Views\Shared\_Movi
 E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 E:\DotNetCore\MovieStore\MovieStoreMVC\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\DotNetCore\MovieStore\MovieStoreMVC\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs

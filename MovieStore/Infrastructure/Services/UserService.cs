@@ -22,9 +22,29 @@ namespace Infrastructure.Services
             _userRepository = userRepository;
         }
 
-        public async Task<LoginRequestModel> Login(LoginRequestModel model)
+        public async Task<UserLoginResponseModel> Login(UserLoginRequestModel model)
         {
-            throw new NotImplementedException();
+            var dbUser = await _userRepository.GetUserByEmail(model.Email);
+            if(dbUser == null)
+            {
+                return null;
+            }
+            //get the hashed pass and salt from db
+            var hashedPass = GetHashedPassword(model.Password, dbUser.Salt);
+            if(hashedPass == dbUser.HashedPassword)
+            {
+                //success
+                var userLoginResponseModel = new UserLoginResponseModel
+                {
+                    id = dbUser.Id,
+                    FirstName = dbUser.FirstName,
+                    LastName = dbUser.LastName,
+                    Email = dbUser.Email
+                };
+
+                return userLoginResponseModel;
+            }
+            return null;
         }
 
         public async Task<UserRegisterResponseModel> RegisterUser(UserRegisterRequestModel model)
