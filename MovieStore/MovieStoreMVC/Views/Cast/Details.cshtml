@@ -1,0 +1,44 @@
+﻿@model ApplicationCore.Models.CastDetailsResponseModel
+
+@{
+    ViewData["Title"] = "Cast Details";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <img src=@Model.ProfilePath class="img-fluid rounded-lg float-right"
+                 alt="Cast Profile Image" />
+        </div>
+        <div class="col">
+            <h1>Name: @Model.Name</h1>
+            @{
+                switch (Model.Gender)
+                {
+                    case "1":
+                        <h3>Gender: Female</h3>
+                        break;
+                    case "2":
+                        <h3>Gender: Male</h3>
+                        break;
+                    default:
+                        <h3>Gender: N/A</h3>
+                        break;
+                }
+            }
+            <h3>List of Movies:</h3>
+            <ul>
+                @{
+                    foreach (var movie in Model.Movies)
+                    {
+                        <li>
+                            @movie.Title
+
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    
+</div>

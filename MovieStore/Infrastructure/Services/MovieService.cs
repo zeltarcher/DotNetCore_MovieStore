@@ -35,7 +35,9 @@ namespace Infrastructure.Services
                 PosterUrl = movie.PosterUrl,
                 RunTime = movie.RunTime,
                 Rating = movie.Rating,
-                Tagline = movie.Tagline
+                Tagline = movie.Tagline,
+                ReleaseYearOnly = ToYearOnlyDateString(movie.ReleaseDate),
+                ReleaseShortDate = ToShortDateString(movie.ReleaseDate)
             };
             movieDetailsModel.Casts = new List<CastResponseModel>();
             foreach (var cast in movie.MovieCasts)
@@ -76,6 +78,14 @@ namespace Infrastructure.Services
             return movieCards;
         }
 
+        private string ToYearOnlyDateString(DateTime? date)
+        {
+            return date!=null?((DateTime)date).ToString("yyyy"):"n/a";
+        }
 
+        private string ToShortDateString(DateTime? date)
+        {
+            return date != null ? ((DateTime)date).ToString("MM/dd/yyyy") : "n/a";
+        }
     }
 }

@@ -48,5 +48,8 @@ namespace ApplicationCore.Models
 
         public List<CastResponseModel> Casts { get; set; }
         public List<GenreResponseModel> genres { get; set; }
+
+        public string ReleaseYearOnly { get; set; }
+        public string ReleaseShortDate { get; set; }
     }
 }

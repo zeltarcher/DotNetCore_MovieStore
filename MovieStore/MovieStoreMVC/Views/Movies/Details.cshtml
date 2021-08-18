@@ -7,13 +7,13 @@
 <div class="container-fluid">
     <div class="row bg-image" style="background-image:url(@Model.BackdropUrl)">
         <div class="col-lg-4">
-            <img src=@Model.PosterUrl class="img-fluid" alt="Poster"/>
+            <img src=@Model.PosterUrl class="img-fluid float-right" alt="Poster"/>
         </div>
-        <div class="col-lg-5">
-            <p class="font-weight-bold text-white-50">@Model.Title</p>
-            <p class="text-secondary">@Model.Tagline</p>
+        <div class="col-lg-6 pl-xl-5 pl-xl-5">
+            <h1 class="font-weight-bold text-white">@Model.Title</h1>
+            <p class="text-white-50">@Model.Tagline</p>
             <p class="text-secondary">
-                @Model.RunTime | @Model.ReleaseDate
+                @Model.RunTime m | @Model.ReleaseYearOnly
                 @{ 
                     foreach (var genre in Model.genres)
                     {
@@ -21,13 +21,105 @@
                     }
                 }
             </p>
-            <p><span class="badge bad">@Model.ImdbUrl</span></p>
+            <p><span class="badge badge-warning">@Model.Rating</span></p>
+            <p class="text-white">@Model.Overview</p>
         </div>
-        <div class="col-lg-3">
-
+        <div class="col-lg-2 float-right">
+            <form>
+                <button type="button" class="btn btn-outline-light btn-lg btn-block mt-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+                    REVIEW
+                </button><br />
+                <button type="button" class="btn btn-outline-light btn-lg btn-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+                        <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z" />
+                    </svg>
+                    TRAILER
+                </button><br />
+                <button type="button" class="btn btn-light btn-lg btn-block">BUY @Model.Price</button><br />
+                <button type="button" class="btn btn-light btn-lg btn-block">WATCH MOVIE</button><br />
+            </form>
         </div>
     </div>
     <div class="row">
-
+        <div class="col-lg-4 float-right">
+            <h2>MOVIE FACTS</h2>
+            <table class="table table-secondary">
+                <tr>
+                    <th scope="row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
+                            <path d="M6.445 11.688V6.354h-.633A12.6 12.6 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61h.675zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82h-.684zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23z" />
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                        </svg>
+                        Release Date 
+                        <span class="badge rounded-pill bg-dark text-white">@Model.ReleaseShortDate</span>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                        </svg>
+                        Run Time
+                        <span class="badge rounded-pill bg-dark text-white">@Model.RunTime m</span>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+                            <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                            <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+                        </svg>
+                        Box Office
+                        <span class="badge rounded-pill bg-dark text-white">$ @Model.Revenue</span>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                            <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                        </svg>
+                        Budget
+                        <span class="badge rounded-pill bg-dark text-white">$ @Model.Budget</span>
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z" />
+                            <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z" />
+                        </svg>
+                        &emsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                            <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
+                        </svg>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6 pl-xl-5">
+            <h2>CAST</h2>
+            <table class="table">
+                @{
+                    foreach (var cast in Model.Casts)
+                    {                        
+                        <tr>
+                            <th scope="row">
+                                <a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id"><img src=@cast.ProfilePath class="img-fluid rounded-circle" alt="Cast Profile Image" width="50" height="50"/></a>
+                            </th>
+                            <td>
+                                @cast.Name
+                            </td>
+                            <td>
+                                @cast.Character
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
     </div>
 </div>
