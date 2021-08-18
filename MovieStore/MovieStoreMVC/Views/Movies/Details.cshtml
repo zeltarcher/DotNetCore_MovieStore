@@ -1,9 +1,33 @@
-﻿@model ApplicationCore.Models.MovieCardResponseModel
+﻿@model ApplicationCore.Models.MovieDetailsResponseModel
 
 @{ 
     ViewData["Title"] = "Movie Details";
 }
 
-<div>
+<div class="container-fluid">
+    <div class="row bg-image" style="background-image:url(@Model.BackdropUrl)">
+        <div class="col-lg-4">
+            <img src=@Model.PosterUrl class="img-fluid" alt="Poster"/>
+        </div>
+        <div class="col-lg-5">
+            <p class="font-weight-bold text-white-50">@Model.Title</p>
+            <p class="text-secondary">@Model.Tagline</p>
+            <p class="text-secondary">
+                @Model.RunTime | @Model.ReleaseDate
+                @{ 
+                    foreach (var genre in Model.genres)
+                    {
+                        <a href="#" class="badge badge-pill badge-secondary">@genre.Name</a>
+                    }
+                }
+            </p>
+            <p><span class="badge bad">@Model.ImdbUrl</span></p>
+        </div>
+        <div class="col-lg-3">
 
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
 </div>
