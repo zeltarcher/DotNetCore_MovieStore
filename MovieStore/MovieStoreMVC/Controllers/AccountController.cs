@@ -3,12 +3,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationCore.Models;
 
 namespace MovieStoreMVC.Controllers
 {
     public class AccountController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginRequestModel model)
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(LoginRequestModel model)
         {
             return View();
         }
