@@ -33,6 +33,8 @@ namespace MovieStoreMVC
             services.AddControllersWithViews();
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddDbContext<MovieShopDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"))
