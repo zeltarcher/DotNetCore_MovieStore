@@ -10,7 +10,7 @@ namespace ApplicationCore.ServiceInterfaces
 {
     public interface IUserService
     {
-        Task<UserRegisterResponseModel> RegisterUser(UserRegisterResponseModel model);
+        Task<UserRegisterResponseModel> RegisterUser(UserRegisterRequestModel model);
         Task<LoginRequestModel> Login(LoginRequestModel model);
     }
 }

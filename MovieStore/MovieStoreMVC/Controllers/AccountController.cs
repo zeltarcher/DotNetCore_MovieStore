@@ -4,11 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApplicationCore.Models;
+using ApplicationCore.ServiceInterfaces;
 
 namespace MovieStoreMVC.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUserService _userService;
+
+        public AccountController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -26,11 +34,15 @@ namespace MovieStoreMVC.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Register(LoginRequestModel model)
+        public async Task<IActionResult> Register(UserRegisterRequestModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             //call the service and repository to hash the pass with salt and save to db
-
-            return View();
+            var registerUser = await _userService.RegisterUser(model);
+            return RedirectToAction("Login");
         }
     }
 }

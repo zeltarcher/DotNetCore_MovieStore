@@ -151,3 +151,5 @@ E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\MovieStoreMVC.pdb
 E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\MovieStoreMVC.genruntimeconfig.cache
 E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\Razor\Views\Shared\_MovieCard.cshtml.g.cs
 E:\DotNetCore\MovieStore\MovieStoreMVC\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
+E:\DotNetCore\MovieStore\MovieStoreMVC\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\DotNetCore\MovieStore\MovieStoreMVC\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
